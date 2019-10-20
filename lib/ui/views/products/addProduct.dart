@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prueba1/core/models/productModel.dart';
 import 'package:provider/provider.dart';
-import '../../core/viewmodels/CRUDModel.dart';
+import '../../../core/viewmodels/CRUDModel.dart';
 class AddProduct extends StatefulWidget {
   @override
   _AddProductState createState() => _AddProductState();

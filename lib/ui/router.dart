@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import './views/addProduct.dart';
-import './views/productDetails.dart';
+import './views/products/addProduct.dart';
+import './views/products/productDetails.dart';
 import './views/homeView.dart';
 
 class Router {

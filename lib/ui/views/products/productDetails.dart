@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prueba1/core/models/productModel.dart';
 import 'package:prueba1/core/viewmodels/CRUDModel.dart';
-import 'package:prueba1/ui/views/ModifyProduct.dart';
+import 'package:prueba1/ui/views/products/ModifyProduct.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetails extends StatelessWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prueba1/ui/views/products/readProduct.dart';
+import 'package:prueba1/ui/views/inventory/readInventory.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -65,9 +66,7 @@ class Page2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('Pagina 2'),),
-    );
+    return ReadInventory();
   }
 }
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import './views/products/addProduct.dart';
 import './views/products/productDetails.dart';
+import './views/inventory/addInventory.dart';
+import './views/inventory/inventoryDetails.dart';
 import './views/homeView.dart';
 
 class Router {
@@ -18,6 +20,14 @@ class Router {
       case '/productDetails' :
         return MaterialPageRoute(
             builder: (_)=> ProductDetails()
+        ) ;
+      case '/addInventory' :
+        return MaterialPageRoute(
+            builder: (_)=> AddInventory()
+        ) ;
+      case '/inventoryDetails' :
+        return MaterialPageRoute(
+            builder: (_)=> InventoryDetails()
         ) ;
       default:
         return MaterialPageRoute(

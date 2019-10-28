@@ -1,13 +1,13 @@
 
-class Product {
+class Production {
   String id;
   String price;
   String name;
   String img;
 
-  Product({this.id, this.price, this.name,this.img});
+  Production({this.id, this.price, this.name,this.img});
 
-  Product.fromMap(Map snapshot,String id) :
+  Production.fromMap(Map snapshot,String id) :
         id = id ?? '',
         price = snapshot['price'] ?? '',
         name = snapshot['name'] ?? '',

@@ -16,20 +16,18 @@ class ModifyInventory extends StatefulWidget {
 class _ModifyInventoryState extends State<ModifyInventory> {
   final _formKey = GlobalKey<FormState>();
 
-  String productType ;
-
-  String title ;
-
-  String price ;
+  String nombre ;
+  String cantTotal ;
+  String cantSalida ;
+  String cantEntrada ;
 
   @override
   Widget build(BuildContext context) {
     final productProvider = Provider.of<CRUDModelInventory>(context);
-    productType =  widget.product.img[0].toUpperCase() + widget.product.img.substring(1);
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text('Modify Product Details'),
+          child: Text('Modify Inventory Details'),
         ),
       ),
       body: Padding(
@@ -39,23 +37,23 @@ class _ModifyInventoryState extends State<ModifyInventory> {
           child: Column(
             children: <Widget>[
               TextFormField(
-                  initialValue: widget.product.name,
+                  initialValue: widget.product.nombre,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Product Title',
+                    hintText: 'Inventory Title',
                     fillColor: Colors.grey[300],
                     filled: true,
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter Product Title';
+                      return 'Please enter Inventory Title';
                     }
                   },
-                  onSaved: (value) => title = value
+                  onSaved: (value) => nombre = value
               ),
               SizedBox(height: 16,),
               TextFormField(
-                  initialValue: widget.product.price,
+                  initialValue: widget.product.cantTotal,
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -68,33 +66,52 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                       return 'Please enter The price';
                     }
                   },
-                  onSaved: (value) => price = value
+                  onSaved: (value) => cantTotal = value
               ),
-              DropdownButton<String>(
-                value: productType,
-                onChanged: (String newValue) {
-                  setState(() {
-                    productType = newValue;
-                  });
-                },
-                items: <String>['Bag', 'Computer', 'Dress', 'Phone','Shoes']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+              SizedBox(height: 16,),
+              TextFormField(
+                  initialValue: widget.product.cantSalida,
+                  keyboardType: TextInputType.numberWithOptions(),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Price',
+                    fillColor: Colors.grey[300],
+                    filled: true,
+                  ),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter The price';
+                    }
+                  },
+                  onSaved: (value) => cantSalida = value
               ),
+              SizedBox(height: 16,),
+              TextFormField(
+                  initialValue: widget.product.cantEntrada,
+                  keyboardType: TextInputType.numberWithOptions(),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Price',
+                    fillColor: Colors.grey[300],
+                    filled: true,
+                  ),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter The price';
+                    }
+                  },
+                  onSaved: (value) => cantEntrada = value
+              ),              
               RaisedButton(
                 splashColor: Colors.red,
                 onPressed: () async{
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    await productProvider.updateProduct(Inventory(name: title,price: price,img: productType.toLowerCase()),widget.product.id);
+                    await productProvider.updateProduct(Inventory(nombre: nombre, cantTotal: cantTotal, cantSalida: cantSalida, cantEntrada: cantEntrada ),widget.product.id);
                     Navigator.pop(context) ;
                   }
                 },
-                child: Text('Modify Product', style: TextStyle(color: Colors.white)),
+                child: Text('Modify Inventory', style: TextStyle(color: Colors.white)),
                 color: Colors.blue,
               )
 

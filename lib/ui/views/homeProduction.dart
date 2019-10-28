@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:prueba1/ui/views/products/readProduct.dart';
 import 'package:prueba1/ui/views/inventory/readInventory.dart';
+import 'package:prueba1/ui/views/production/readProduction.dart';
 
-class HomeProducts extends StatefulWidget {
+class HomeProduction extends StatefulWidget {
   @override
-  _HomeProductsState createState() => _HomeProductsState();
+  _HomeProductionState createState() => _HomeProductionState();
 }
 
-class _HomeProductsState extends State<HomeProducts> {int _currentIndex = 0;
+class _HomeProductionState extends State<HomeProduction> {int _currentIndex = 0;
   final List<Widget> _children = [
     Page1(Colors.white),
+    Page2(Colors.deepOrange),
   ];
 
   @override
@@ -23,6 +24,10 @@ class _HomeProductsState extends State<HomeProducts> {int _currentIndex = 0;
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.mail),
+            title: Text('Messages'),
           ),
         ],
       ),
@@ -45,7 +50,18 @@ class Page1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ReadProduct();
+    return ReadInventory();
+  }
+}
+
+class Page2 extends StatelessWidget {
+  final Color color;
+
+  Page2(this.color);
+
+  @override
+  Widget build(BuildContext context) {
+    return ReadProduction();
   }
 }
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:prueba1/core/models/productModel.dart';
+import 'package:prueba1/core/models/productionModel.dart';
 import 'package:provider/provider.dart';
-import '../../../core/viewmodels/CRUDModel.dart';
-class AddProduct extends StatefulWidget {
+import '../../../core/viewmodels/CRUDModelProduction.dart';
+class AddProduction extends StatefulWidget {
   @override
-  _AddProductState createState() => _AddProductState();
+  _AddProductionState createState() => _AddProductionState();
 }
 
-class _AddProductState extends State<AddProduct> {
+class _AddProductionState extends State<AddProduction> {
   final _formKey = GlobalKey<FormState>();
   String productType = 'Bag';
   String title ;
@@ -15,11 +15,11 @@ class _AddProductState extends State<AddProduct> {
 
   @override
   Widget build(BuildContext context) {
-    var productProvider = Provider.of<CRUDModel>(context) ;
+    var productProvider = Provider.of<CRUDModelProduction>(context) ;
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text('Add Product'),
+          child: Text('Add Production'),
         ),
       ),
       body: Padding(
@@ -31,13 +31,13 @@ class _AddProductState extends State<AddProduct> {
               TextFormField(
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Product Title',
+                  hintText: 'Production Title',
                   fillColor: Colors.grey[300],
                   filled: true,
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Please enter Product Title';
+                    return 'Please enter Production Title';
                   }
                 },
                   onSaved: (value) => title = value
@@ -78,7 +78,7 @@ class _AddProductState extends State<AddProduct> {
                 onPressed: () async{
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    await productProvider.addProduct(Product(name: title,price: price,img: productType.toLowerCase()));
+                    await productProvider.addProduct(Production(name: title,price: price,img: productType.toLowerCase()));
                     Navigator.pop(context) ;
                   }
                 },

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:prueba1/core/models/productModel.dart';
-import 'package:prueba1/core/viewmodels/CRUDModel.dart';
-import 'package:prueba1/ui/views/products/ModifyProduct.dart';
+import 'package:prueba1/core/models/productionModel.dart';
+import 'package:prueba1/core/viewmodels/CRUDModelProduction.dart';
+import 'package:prueba1/ui/views/Production/ModifyProduction.dart';
 import 'package:provider/provider.dart';
 
-class ProductDetails extends StatelessWidget {
-  final Product product;
+class ProductionDetails extends StatelessWidget {
+  final Production product;
 
-  ProductDetails({@required this.product});
+  ProductionDetails({@required this.product});
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = Provider.of<CRUDModel>(context);
+    final productProvider = Provider.of<CRUDModelProduction>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -30,7 +30,7 @@ class ProductDetails extends StatelessWidget {
             iconSize: 35,
             icon: Icon(Icons.edit),
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (_)=> ModifyProduct(product: product,)));
+              Navigator.push(context, MaterialPageRoute(builder: (_)=> ModifyProduction(product: product,)));
             },
           )
         ],

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:prueba1/core/models/inventoryModel.dart';
 import 'package:prueba1/core/viewmodels/CRUDModelInventory.dart';
-import 'package:prueba1/ui/widgets/productCard.dart';
+import 'package:prueba1/ui/widgets/inventoryCard.dart';
 import 'package:provider/provider.dart';
 
 class ReadInventory extends StatefulWidget {
@@ -38,7 +38,7 @@ class _ReadInventoryState extends State<ReadInventory> {
                 return ListView.builder(
                   itemCount: products.length,
                   itemBuilder: (buildContext, index) =>
-                      InventoryCard(inventoryDetails: products[index]),
+                      InventoryCard(productDetails: products[index]),
                 );
               } else {
                 return Text('fetching');
@@ -46,6 +46,5 @@ class _ReadInventoryState extends State<ReadInventory> {
             }),
       ),
     );
-    ;
   }
 }

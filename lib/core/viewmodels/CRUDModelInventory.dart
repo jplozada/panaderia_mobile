@@ -40,6 +40,10 @@ class CRUDModelInventory extends ChangeNotifier {
 
   Future addProduct(Inventory data) async{
     var result  = await _api.addDocument(data.toJson()) ;
+
     return ;
+
   }
+
+
 }

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:prueba1/core/models/productModel.dart';
-import 'package:prueba1/core/viewmodels/CRUDModel.dart';
+import 'package:prueba1/core/models/productionModel.dart';
+import 'package:prueba1/core/viewmodels/CRUDModelProduction.dart';
 import 'package:provider/provider.dart';
 
 
-class ModifyProduct extends StatefulWidget {
-  final Product product;
+class ModifyProduction extends StatefulWidget {
+  final Production product;
 
-  ModifyProduct({@required this.product});
+  ModifyProduction({@required this.product});
 
   @override
-  _ModifyProductState createState() => _ModifyProductState();
+  _ModifyProductionState createState() => _ModifyProductionState();
 }
 
-class _ModifyProductState extends State<ModifyProduct> {
+class _ModifyProductionState extends State<ModifyProduction> {
   final _formKey = GlobalKey<FormState>();
 
   String productType ;
@@ -24,7 +24,7 @@ class _ModifyProductState extends State<ModifyProduct> {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = Provider.of<CRUDModel>(context);
+    final productProvider = Provider.of<CRUDModelProduction>(context);
     productType =  widget.product.img[0].toUpperCase() + widget.product.img.substring(1);
     return Scaffold(
       appBar: AppBar(
@@ -90,7 +90,7 @@ class _ModifyProductState extends State<ModifyProduct> {
                 onPressed: () async{
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    await productProvider.updateProduct(Product(name: title,price: price,img: productType.toLowerCase()),widget.product.id);
+                    await productProvider.updateProduct(Production(name: title,price: price,img: productType.toLowerCase()),widget.product.id);
                     Navigator.pop(context) ;
                   }
                 },

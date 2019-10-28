@@ -1,12 +1,12 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
-class Api{
+class ApiInventory{
   final Firestore _db = Firestore.instance;
   final String path;
   CollectionReference ref;
 
-  Api( this.path ) {
+  ApiInventory( this.path ) {
     ref = _db.collection(path);
   }
 
@@ -29,12 +29,12 @@ class Api{
     return ref.document(id).updateData(data) ;
   }
 }
-class ApiInventory{
+class ApiProduction{
   final Firestore _db = Firestore.instance;
   final String path;
   CollectionReference ref;
 
-  ApiInventory( this.path ) {
+  ApiProduction( this.path ) {
     ref = _db.collection(path);
   }
 

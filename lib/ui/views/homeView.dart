@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:prueba1/ui/views/homeInventory.dart';
-import 'package:prueba1/ui/views/homeProducts.dart';
+import 'package:prueba1/ui/views/HomeProduction.dart';
 import 'package:prueba1/ui/views/homeVentas.dart';
-import 'package:prueba1/ui/views/products/readProduct.dart';
+import 'package:prueba1/ui/views/inventory/readInventory.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -18,10 +17,8 @@ class HomeViewState extends State<HomeView>
   final TextEditingController password_controller = new TextEditingController();
   String _nombre;
   String _contr;
-  String _mensaje;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -146,7 +143,7 @@ class HomeViewState extends State<HomeView>
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      ReadProduct()
+                                                      ReadInventory()
                                               ),
                                             );
                                           }
@@ -157,7 +154,7 @@ class HomeViewState extends State<HomeView>
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        HomeInventory()
+                                                        HomeProduction()
                                                 ),
                                               );
                                             }

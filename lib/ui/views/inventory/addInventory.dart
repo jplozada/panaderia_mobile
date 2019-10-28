@@ -9,9 +9,11 @@ class AddInventory extends StatefulWidget {
 
 class _AddInventoryState extends State<AddInventory> {
   final _formKey = GlobalKey<FormState>();
-  String productType = 'Bag';
-  String title ;
-  String price ;
+
+  String nombre ;
+  String cantTotal ;
+  String cantSalida ;
+  String cantEntrada ;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class _AddInventoryState extends State<AddInventory> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text('Add Inventory'),
+          child: Text('Add Inventario'),
         ),
       ),
       body: Padding(
@@ -31,54 +33,71 @@ class _AddInventoryState extends State<AddInventory> {
               TextFormField(
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Inventory Title',
+                  hintText: 'Producto',
                   fillColor: Colors.grey[300],
                   filled: true,
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Please enter Inventory Title';
+                    return 'Introduzca el producto';
                   }
                 },
-                  onSaved: (value) => title = value
+                  onSaved: (value) => nombre = value
               ),
               SizedBox(height: 16,),
               TextFormField(
                 keyboardType: TextInputType.numberWithOptions(),
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Price',
+                  hintText: 'Cantidad total',
                   fillColor: Colors.grey[300],
                   filled: true,
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Please enter The price';
+                    return 'Introduzca la cantidad total';
                   }
                 },
-                  onSaved: (value) => price = value
+                  onSaved: (value) => cantTotal = value
               ),
-              DropdownButton<String>(
-                value: productType,
-                onChanged: (String newValue) {
-                  setState(() {
-                    productType = newValue;
-                  });
+              SizedBox(height: 16,),
+              TextFormField(
+                keyboardType: TextInputType.numberWithOptions(),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Cantidad Salida',
+                  fillColor: Colors.grey[300],
+                  filled: true,
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Introduzca la cantidad de salida';
+                  }
                 },
-                items: <String>['Bag', 'Computer', 'Dress', 'Phone','Shoes']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+                  onSaved: (value) => cantSalida = value
+              ),
+              SizedBox(height: 16,),
+              TextFormField(
+                keyboardType: TextInputType.numberWithOptions(),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Cantidad Entrada',
+                  fillColor: Colors.grey[300],
+                  filled: true,
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Introduzca la cantidad de entrada';
+                  }
+                },
+                  onSaved: (value) => cantEntrada = value
               ),
               RaisedButton(
                 splashColor: Colors.red,
                 onPressed: () async{
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    await productProvider.addProduct(Inventory(name: title,price: price,img: productType.toLowerCase()));
+                    await productProvider.addProduct(Inventory(nombre: nombre, cantTotal: cantTotal, cantSalida: cantSalida, cantEntrada: cantEntrada));
                     Navigator.pop(context) ;
                   }
                 },

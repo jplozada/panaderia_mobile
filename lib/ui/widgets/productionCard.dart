@@ -30,33 +30,57 @@ class ProductionCard extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.all(16),
-                  child: Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        productDetails.trabajo,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 22,
-                            fontStyle: FontStyle.italic),
-                      ),
-                      Text(
-                        productDetails.cantidad,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 22,
-                            fontStyle: FontStyle.italic),
-                      ),
-                      Text(
-                        productDetails.fecha,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 22,
-                            fontStyle: FontStyle.italic),
-                      ),
-                    ],
-                  ),
+                  child: Container(
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 2,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  productDetails.trabajo,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                      fontStyle: FontStyle.italic),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  productDetails.cantidad,
+                                    style: TextStyle(
+                                      fontSize: 16,),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  productDetails.fecha,
+                                    style: TextStyle(
+                                      fontSize: 16,),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 )
               ],
             ),

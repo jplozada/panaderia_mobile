@@ -14,7 +14,7 @@ class InventoryCard extends StatelessWidget {
         Navigator.push(context, MaterialPageRoute(builder: (_) => InventoryDetails(product: productDetails)));
       },
       child: Padding(
-        padding: EdgeInsets.all(8),
+        padding: EdgeInsets.all(5),
         child: Card(
           elevation: 5,
           child: Container(
@@ -29,41 +29,72 @@ class InventoryCard extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        productDetails.nombre,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 22,
-                            fontStyle: FontStyle.italic),
-                      ),
-                      Text(
-                        productDetails.cantTotal,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 22,
-                            fontStyle: FontStyle.italic),
-                      ),
-                      Text(
-                        productDetails.cantSalida,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 22,
-                            fontStyle: FontStyle.italic),
-                      ),
-                      Text(
-                        productDetails.cantEntrada,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 22,
-                            fontStyle: FontStyle.italic),
-                      ),
-                    ],
-                  ),
+                  padding: EdgeInsets.all(14),
+                  child: Container(
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 2,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  productDetails.nombre,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                      fontStyle: FontStyle.italic),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  productDetails.cantTotal,
+                                    style: TextStyle(
+                                      fontSize: 16,),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  productDetails.cantSalida,
+                                    style: TextStyle(
+                                      fontSize: 16,),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  productDetails.cantEntrada,
+                                    style: TextStyle(
+                                      fontSize: 16,),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 )
               ],
             ),

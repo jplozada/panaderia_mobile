@@ -18,10 +18,10 @@ class InventoryCard extends StatelessWidget {
         child: Card(
           elevation: 5,
           child: Container(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height * 0.45,
+            // height: MediaQuery
+            //     .of(context)
+            //     .size
+            //     .height * 0.18,
             width: MediaQuery
                 .of(context)
                 .size

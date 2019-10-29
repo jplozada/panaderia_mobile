@@ -9,18 +9,16 @@ class AddProduction extends StatefulWidget {
 
 class _AddProductionState extends State<AddProduction> {
   final _formKey = GlobalKey<FormState>();
-  String productType = 'Bag';
-  String title ;
-  String price ;
+  String trabajo ;
+  String cantidad ;
+  String fecha ;
 
   @override
   Widget build(BuildContext context) {
     var productProvider = Provider.of<CRUDModelProduction>(context) ;
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text('Add Production'),
-        ),
+        title: Text('Añadir registro'),
       ),
       body: Padding(
         padding: EdgeInsets.all(12),
@@ -31,54 +29,55 @@ class _AddProductionState extends State<AddProduction> {
               TextFormField(
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Production Title',
+                  hintText: 'Trabajo realizado',
                   fillColor: Colors.grey[300],
                   filled: true,
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Please enter Production Title';
+                    return 'Ingrese el trabajo realizado';
                   }
                 },
-                  onSaved: (value) => title = value
+                  onSaved: (value) => trabajo = value
               ),
               SizedBox(height: 16,),
               TextFormField(
                 keyboardType: TextInputType.numberWithOptions(),
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Price',
+                  hintText: 'Cantidad',
                   fillColor: Colors.grey[300],
                   filled: true,
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Please enter The price';
+                    return 'Ingrese la cantidad';
                   }
                 },
-                  onSaved: (value) => price = value
+                  onSaved: (value) => cantidad = value
               ),
-              DropdownButton<String>(
-                value: productType,
-                onChanged: (String newValue) {
-                  setState(() {
-                    productType = newValue;
-                  });
+              SizedBox(height: 16,),
+              TextFormField(
+                keyboardType: TextInputType.numberWithOptions(),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Fecha',
+                  fillColor: Colors.grey[300],
+                  filled: true,
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Ingrese la fecha';
+                  }
                 },
-                items: <String>['Bag', 'Computer', 'Dress', 'Phone','Shoes']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-              ),
+                  onSaved: (value) => fecha = value
+              ),              
               RaisedButton(
                 splashColor: Colors.red,
                 onPressed: () async{
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    await productProvider.addProduct(Production(name: title,price: price,img: productType.toLowerCase()));
+                    await productProvider.addProduct(Production(trabajo: trabajo, cantidad: cantidad, fecha: fecha));
                     Navigator.pop(context) ;
                   }
                 },

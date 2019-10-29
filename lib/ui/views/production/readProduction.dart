@@ -25,7 +25,7 @@ class _ReadProductionState extends State<ReadProduction> {
         child: Icon(Icons.add),
       ),
       appBar: AppBar(
-        title: Center(child: Text('Home')),
+        title: Text('Produccion'),
       ),
       body: Container(
         child: StreamBuilder(
@@ -38,10 +38,10 @@ class _ReadProductionState extends State<ReadProduction> {
                 return ListView.builder(
                   itemCount: products.length,
                   itemBuilder: (buildContext, index) =>
-                      ProductionCard(productionDetails: products[index]),
+                      ProductionCard(productDetails: products[index]),
                 );
               } else {
-                return Text('fetching');
+                return Center(child: Text('Cargando datos...'),);
               }
             }),
       ),

@@ -39,9 +39,6 @@ class InventoryDetails extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          SizedBox(
-            height: 20,
-          ),
           Text(
             product.nombre,
             style: TextStyle(

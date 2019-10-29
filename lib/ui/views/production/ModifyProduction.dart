@@ -16,20 +16,19 @@ class ModifyProduction extends StatefulWidget {
 class _ModifyProductionState extends State<ModifyProduction> {
   final _formKey = GlobalKey<FormState>();
 
-  String productType ;
+  String trabajo ;
 
-  String title ;
+  String cantidad ;
 
-  String price ;
+  String fecha ;
 
   @override
   Widget build(BuildContext context) {
     final productProvider = Provider.of<CRUDModelProduction>(context);
-    productType =  widget.product.img[0].toUpperCase() + widget.product.img.substring(1);
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text('Modify Product Details'),
+          child: Text('Modificar Produccion'),
         ),
       ),
       body: Padding(
@@ -39,62 +38,65 @@ class _ModifyProductionState extends State<ModifyProduction> {
           child: Column(
             children: <Widget>[
               TextFormField(
-                  initialValue: widget.product.name,
+                  initialValue: widget.product.trabajo,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Product Title',
+                    hintText: 'Trabajo Realizado',
                     fillColor: Colors.grey[300],
                     filled: true,
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter Product Title';
+                      return 'Ingrese el trabajo realizado';
                     }
                   },
-                  onSaved: (value) => title = value
+                  onSaved: (value) => trabajo = value
               ),
               SizedBox(height: 16,),
               TextFormField(
-                  initialValue: widget.product.price,
+                  initialValue: widget.product.cantidad,
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Price',
+                    hintText: 'Cantidad',
                     fillColor: Colors.grey[300],
                     filled: true,
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter The price';
+                      return 'Ingrese la cantidad';
                     }
                   },
-                  onSaved: (value) => price = value
+                  onSaved: (value) => cantidad = value
               ),
-              DropdownButton<String>(
-                value: productType,
-                onChanged: (String newValue) {
-                  setState(() {
-                    productType = newValue;
-                  });
-                },
-                items: <String>['Bag', 'Computer', 'Dress', 'Phone','Shoes']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+              SizedBox(height: 16,),
+              TextFormField(
+                  initialValue: widget.product.fecha,
+                  keyboardType: TextInputType.numberWithOptions(),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Fecha',
+                    fillColor: Colors.grey[300],
+                    filled: true,
+                  ),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Ingrese la fecha';
+                    }
+                  },
+                  onSaved: (value) => fecha = value
               ),
+              SizedBox(height: 16,),
               RaisedButton(
                 splashColor: Colors.red,
                 onPressed: () async{
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    await productProvider.updateProduct(Production(name: title,price: price,img: productType.toLowerCase()),widget.product.id);
+                    await productProvider.updateProduct(Production(trabajo: trabajo, cantidad: cantidad, fecha: fecha ),widget.product.id);
                     Navigator.pop(context) ;
                   }
                 },
-                child: Text('Modify Product', style: TextStyle(color: Colors.white)),
+                child: Text('Modificar registro', style: TextStyle(color: Colors.white)),
                 color: Colors.blue,
               )
 

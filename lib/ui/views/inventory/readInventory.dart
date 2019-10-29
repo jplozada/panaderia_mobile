@@ -25,7 +25,7 @@ class _ReadInventoryState extends State<ReadInventory> {
         child: Icon(Icons.add),
       ),
       appBar: AppBar(
-        title: Center(child: Text('Home')),
+        title: Center(child: Text('Inventario')),
       ),
       body: Container(
         child: StreamBuilder(
@@ -41,7 +41,7 @@ class _ReadInventoryState extends State<ReadInventory> {
                       InventoryCard(productDetails: products[index]),
                 );
               } else {
-                return Text('fetching');
+                return Center(child: Text('Cargando datos...'),);
               }
             }),
       ),

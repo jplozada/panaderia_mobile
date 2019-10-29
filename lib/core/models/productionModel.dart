@@ -1,23 +1,23 @@
 
 class Production {
   String id;
-  String price;
-  String name;
-  String img;
+  String trabajo;
+  String cantidad;
+  String fecha;
 
-  Production({this.id, this.price, this.name,this.img});
+  Production({this.id, this.trabajo, this.cantidad,this.fecha});
 
   Production.fromMap(Map snapshot,String id) :
         id = id ?? '',
-        price = snapshot['price'] ?? '',
-        name = snapshot['name'] ?? '',
-        img = snapshot['img'] ?? '';
+        trabajo = snapshot['trabajo'] ?? '',
+        cantidad = snapshot['cantidad'] ?? '',
+        fecha = snapshot['fecha'] ?? '';
 
   toJson() {
     return {
-      "price": price,
-      "name": name,
-      "img": img,
+      "trabajo": trabajo,
+      "cantidad": cantidad,
+      "fecha": fecha,
     };
   }
 }

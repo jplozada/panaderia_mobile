@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:prueba1/core/models/inventoryModel.dart';
 import 'package:provider/provider.dart';
 import '../../../core/viewmodels/CRUDModelInventory.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+
 class AddInventory extends StatefulWidget {
   @override
   _AddInventoryState createState() => _AddInventoryState();
@@ -9,6 +11,14 @@ class AddInventory extends StatefulWidget {
 
 class _AddInventoryState extends State<AddInventory> {
   final _formKey = GlobalKey<FormState>();
+  String _counter,_value = "Presione el boton para escanear";
+  Future _incrementCounter() async{
+    _counter= await FlutterBarcodeScanner.scanBarcode("#004297", "Cancel", true, ScanMode.DEFAULT);
+    setState(() {
+      _value=_counter;
+      nombre = _value;
+    });
+  }
 
   String nombre ;
   String cantTotal ;
@@ -20,9 +30,7 @@ class _AddInventoryState extends State<AddInventory> {
     var productProvider = Provider.of<CRUDModelInventory>(context) ;
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text('Añadir registro'),
-        ),
+        title: Text('Añadir registro'),
       ),
       body: Padding(
         padding: EdgeInsets.all(12),
@@ -30,19 +38,23 @@ class _AddInventoryState extends State<AddInventory> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              TextFormField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Producto',
-                  fillColor: Colors.grey[300],
-                  filled: true,
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 3,
+                      child: Text(_value),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: RaisedButton(
+                      onPressed: _incrementCounter,
+                      child: Text("Leer QR", style: TextStyle(color: Colors.white),),
+                      color: Colors.blue,
+                      ),
+                    ),
+                  ],
                 ),
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Introduzca el producto';
-                  }
-                },
-                  onSaved: (value) => nombre = value
               ),
               SizedBox(height: 16,),
               TextFormField(

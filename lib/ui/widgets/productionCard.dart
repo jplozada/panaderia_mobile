@@ -34,7 +34,7 @@ class ProductionCard extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Expanded(
-                          flex: 2,
+                          flex: 3,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -51,6 +51,7 @@ class ProductionCard extends StatelessWidget {
                           ),
                         ),
                         Expanded(
+                          flex: 1,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -65,6 +66,7 @@ class ProductionCard extends StatelessWidget {
                           ),
                         ),
                         Expanded(
+                          flex: 2,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[

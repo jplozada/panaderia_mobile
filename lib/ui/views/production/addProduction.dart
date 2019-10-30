@@ -15,6 +15,7 @@ class _AddProductionState extends State<AddProduction> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime selectedDate = DateTime.now();
     var productProvider = Provider.of<CRUDModelProduction>(context) ;
     return Scaffold(
       appBar: AppBar(
@@ -58,7 +59,7 @@ class _AddProductionState extends State<AddProduction> {
               ),
               SizedBox(height: 16,),
               TextFormField(
-                keyboardType: TextInputType.numberWithOptions(),
+                initialValue: "${selectedDate.year}-${selectedDate.month}-${selectedDate.day}",
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Fecha',
@@ -71,14 +72,14 @@ class _AddProductionState extends State<AddProduction> {
                   }
                 },
                   onSaved: (value) => fecha = value
-              ),              
+              ),             
               RaisedButton(
                 splashColor: Colors.red,
                 onPressed: () async{
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
                     await productProvider.addProduct(Production(trabajo: trabajo, cantidad: cantidad, fecha: fecha));
-                    Navigator.pop(context) ;
+                    Navigator.pushNamed(context, '/readProduction');
                   }
                 },
                 child: Text('add Product', style: TextStyle(color: Colors.white)),

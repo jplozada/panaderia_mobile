@@ -24,12 +24,11 @@ class _ModifyProductionState extends State<ModifyProduction> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime selectedDate = DateTime.now();
     final productProvider = Provider.of<CRUDModelProduction>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text('Modificar Produccion'),
-        ),
+        title: Text('Modificar registro'),
       ),
       body: Padding(
         padding: EdgeInsets.all(12),
@@ -37,8 +36,15 @@ class _ModifyProductionState extends State<ModifyProduction> {
           key: _formKey,
           child: Column(
             children: <Widget>[
+              Container(child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("Modificar Trabajo Realizado"),
+                  Text("Antiguo: ${widget.product.trabajo}", style: TextStyle(color: Colors.red),),
+                ],
+              ),),
+              SizedBox(height: 16,),
               TextFormField(
-                  initialValue: widget.product.trabajo,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Trabajo Realizado',
@@ -53,8 +59,15 @@ class _ModifyProductionState extends State<ModifyProduction> {
                   onSaved: (value) => trabajo = value
               ),
               SizedBox(height: 16,),
+              Container(child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("Modificar Cantidad"),
+                  Text("Antiguo: ${widget.product.cantidad}", style: TextStyle(color: Colors.red),),
+                ],
+              ),),
+              SizedBox(height: 16,),
               TextFormField(
-                  initialValue: widget.product.cantidad,
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -70,12 +83,19 @@ class _ModifyProductionState extends State<ModifyProduction> {
                   onSaved: (value) => cantidad = value
               ),
               SizedBox(height: 16,),
+              Container(child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("Modificar Fecha"),
+                  Text("Antiguo: ${widget.product.fecha}", style: TextStyle(color: Colors.red),),
+                ],
+              ),),
+              SizedBox(height: 16,),
               TextFormField(
-                  initialValue: widget.product.fecha,
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Fecha',
+                    hintText: 'Fecha AA/MM/DD',
                     fillColor: Colors.grey[300],
                     filled: true,
                   ),
@@ -93,7 +113,7 @@ class _ModifyProductionState extends State<ModifyProduction> {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
                     await productProvider.updateProduct(Production(trabajo: trabajo, cantidad: cantidad, fecha: fecha ),widget.product.id);
-                    Navigator.pop(context) ;
+                    Navigator.pushNamed(context, '/readProduction');
                   }
                 },
                 child: Text('Modificar registro', style: TextStyle(color: Colors.white)),

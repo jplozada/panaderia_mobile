@@ -15,7 +15,7 @@ class ProductionDetails extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detalle registro'),
+        title: Text('Detalle del registro'),
         actions: <Widget>[
           
           IconButton(
@@ -23,7 +23,7 @@ class ProductionDetails extends StatelessWidget {
             icon: Icon(Icons.delete_forever),
             onPressed: ()async {
               await productProvider.removeProduct(product.id);
-              Navigator.pop(context) ;
+              Navigator.pushNamed(context, '/readProduction');
             },
           ),
           IconButton(

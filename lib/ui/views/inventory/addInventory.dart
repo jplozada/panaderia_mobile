@@ -21,7 +21,7 @@ class _AddInventoryState extends State<AddInventory> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text('Add Inventario'),
+          child: Text('Añadir registro'),
         ),
       ),
       body: Padding(
@@ -98,7 +98,7 @@ class _AddInventoryState extends State<AddInventory> {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
                     await productProvider.addProduct(Inventory(nombre: nombre, cantTotal: cantTotal, cantSalida: cantSalida, cantEntrada: cantEntrada));
-                    Navigator.pop(context) ;
+                    Navigator.pushNamed(context, '/readInventory');
                   }
                 },
                 child: Text('add Product', style: TextStyle(color: Colors.white)),

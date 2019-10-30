@@ -26,9 +26,7 @@ class _ModifyInventoryState extends State<ModifyInventory> {
     final productProvider = Provider.of<CRUDModelInventory>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text('Modify Inventory Details'),
-        ),
+        title: Text('Modificar registro'),
       ),
       body: Padding(
         padding: EdgeInsets.all(12),
@@ -36,6 +34,14 @@ class _ModifyInventoryState extends State<ModifyInventory> {
           key: _formKey,
           child: Column(
             children: <Widget>[
+              Container(child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("Modificar Trabajo Realizado"),
+                  Text("Antiguo: ${widget.product.nombre}", style: TextStyle(color: Colors.red),),
+                ],
+              ),),
+              SizedBox(height: 16,),
               TextFormField(
                   initialValue: widget.product.nombre,
                   decoration: InputDecoration(
@@ -51,6 +57,14 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                   },
                   onSaved: (value) => nombre = value
               ),
+              SizedBox(height: 16,),
+              Container(child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("Modificar Trabajo Realizado"),
+                  Text("Antiguo: ${widget.product.cantTotal}", style: TextStyle(color: Colors.red),),
+                ],
+              ),),
               SizedBox(height: 16,),
               TextFormField(
                   initialValue: widget.product.cantTotal,
@@ -69,6 +83,14 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                   onSaved: (value) => cantTotal = value
               ),
               SizedBox(height: 16,),
+              Container(child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("Modificar Trabajo Realizado"),
+                  Text("Antiguo: ${widget.product.cantSalida}", style: TextStyle(color: Colors.red),),
+                ],
+              ),),
+              SizedBox(height: 16,),
               TextFormField(
                   initialValue: widget.product.cantSalida,
                   keyboardType: TextInputType.numberWithOptions(),
@@ -85,6 +107,14 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                   },
                   onSaved: (value) => cantSalida = value
               ),
+              SizedBox(height: 16,),
+              Container(child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("Modificar Trabajo Realizado"),
+                  Text("Antiguo: ${widget.product.cantEntrada}", style: TextStyle(color: Colors.red),),
+                ],
+              ),),
               SizedBox(height: 16,),
               TextFormField(
                   initialValue: widget.product.cantEntrada,
@@ -108,7 +138,7 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
                     await productProvider.updateProduct(Inventory(nombre: nombre, cantTotal: cantTotal, cantSalida: cantSalida, cantEntrada: cantEntrada ),widget.product.id);
-                    Navigator.pop(context) ;
+                    Navigator.pushNamed(context, '/readInventory');
                   }
                 },
                 child: Text('Modify Inventory', style: TextStyle(color: Colors.white)),

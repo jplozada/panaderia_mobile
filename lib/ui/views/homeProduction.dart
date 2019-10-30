@@ -23,11 +23,11 @@ class _HomeProductionState extends State<HomeProduction> {int _currentIndex = 0;
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home'),
+            title: Text('Inventario'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mail),
-            title: Text('Messages'),
+            title: Text('Produccion'),
           ),
         ],
       ),

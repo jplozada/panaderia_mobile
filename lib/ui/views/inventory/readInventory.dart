@@ -25,7 +25,7 @@ class _ReadInventoryState extends State<ReadInventory> {
         child: Icon(Icons.add),
       ),
       appBar: AppBar(
-        title: Center(child: Text('Inventario')),
+        title: Text('Inventario'),
       ),
       body: Container(
         child: StreamBuilder(

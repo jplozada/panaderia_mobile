@@ -38,7 +38,7 @@ class _ReadInventoryState extends State<ReadInventory> {
                 return ListView.builder(
                   itemCount: products.length,
                   itemBuilder: (buildContext, index) =>
-                      InventoryCard(productDetails: products[index]),
+                      InventoryCard(product: products[index]),
                 );
               } else {
                 return Center(child: Text('Cargando datos...'),);

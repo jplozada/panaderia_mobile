@@ -28,7 +28,9 @@ class _ModifyInventoryState extends State<ModifyInventory> {
       appBar: AppBar(
         title: Text('Modificar registro'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Padding(
         padding: EdgeInsets.all(12),
         child: Form(
           key: _formKey,
@@ -38,7 +40,6 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("Modificar Trabajo Realizado"),
-                  Text("Antiguo: ${widget.product.nombre}", style: TextStyle(color: Colors.red),),
                 ],
               ),),
               SizedBox(height: 16,),
@@ -62,7 +63,6 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("Modificar Trabajo Realizado"),
-                  Text("Antiguo: ${widget.product.cantTotal}", style: TextStyle(color: Colors.red),),
                 ],
               ),),
               SizedBox(height: 16,),
@@ -87,7 +87,6 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("Modificar Trabajo Realizado"),
-                  Text("Antiguo: ${widget.product.cantSalida}", style: TextStyle(color: Colors.red),),
                 ],
               ),),
               SizedBox(height: 16,),
@@ -112,7 +111,6 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("Modificar Trabajo Realizado"),
-                  Text("Antiguo: ${widget.product.cantEntrada}", style: TextStyle(color: Colors.red),),
                 ],
               ),),
               SizedBox(height: 16,),
@@ -138,7 +136,7 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
                     await productProvider.updateProduct(Inventory(nombre: nombre, cantTotal: cantTotal, cantSalida: cantSalida, cantEntrada: cantEntrada ),widget.product.id);
-                    Navigator.pushNamed(context, '/readInventory');
+                    Navigator.pushNamed(context, '/');
                   }
                 },
                 child: Text('Modify Inventory', style: TextStyle(color: Colors.white)),
@@ -149,6 +147,7 @@ class _ModifyInventoryState extends State<ModifyInventory> {
           ),
         ),
       ),
+      )
     );
   }
 }

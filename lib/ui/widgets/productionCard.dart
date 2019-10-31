@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:prueba1/core/models/productionModel.dart';
-import 'package:prueba1/ui/views/production/productionDetails.dart';
+import 'package:prueba1/ui/views/production/modifyProduction.dart';
+import 'package:prueba1/core/viewmodels/CRUDModelProduction.dart';
+import 'package:provider/provider.dart';
 
 class ProductionCard extends StatelessWidget {
-  final Production productDetails;
+  final Production product;
 
-  ProductionCard({@required this.productDetails});
+  ProductionCard({@required this.product});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (_) => ProductionDetails(product: productDetails)));
-      },
-      child: Padding(
+    final productProvider = Provider.of<CRUDModelProduction>(context);
+    return Padding(
         padding: EdgeInsets.all(8),
         child: Card(
           elevation: 5,
@@ -40,7 +39,7 @@ class ProductionCard extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  productDetails.trabajo,
+                                  product.trabajo,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 18,
@@ -57,7 +56,7 @@ class ProductionCard extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  productDetails.cantidad,
+                                  product.cantidad,
                                     style: TextStyle(
                                       fontSize: 16,),
                                 ),
@@ -66,19 +65,40 @@ class ProductionCard extends StatelessWidget {
                           ),
                         ),
                         Expanded(
-                          flex: 2,
+                          flex: 3,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  productDetails.fecha,
+                                  product.fecha,
                                     style: TextStyle(
                                       fontSize: 16,),
                                 ),
                               ),
                             ],
                           ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: IconButton(
+                          iconSize: 35,
+                          icon: Icon(Icons.delete_forever),
+                          onPressed: () {
+                            productProvider.removeProduct(product.id);
+                            Navigator.pushNamed(context, '/');
+                          },
+                        ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: IconButton(
+                          iconSize: 35,
+                          icon: Icon(Icons.edit),
+                          onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (_)=> ModifyProduction(product: product,)));
+                            },
+                        ),
                         ),
                       ],
                     ),
@@ -88,8 +108,7 @@ class ProductionCard extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
 

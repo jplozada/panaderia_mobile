@@ -137,8 +137,8 @@ class HomeViewState extends State<HomeView>
                                               gravity: ToastGravity.CENTER,
                                               timeInSecForIos: 1);
                                         } else {
-                                          if (_nombre == "inventario" &&
-                                              _contr == "inventario") {
+                                          if (_nombre == "1" &&
+                                              _contr == "1") {
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
@@ -148,8 +148,8 @@ class HomeViewState extends State<HomeView>
                                             );
                                           }
                                           else {
-                                            if (_nombre == "produccion" &&
-                                                _contr == "produccion") {
+                                            if (_nombre == "2" &&
+                                                _contr == "2") {
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -159,8 +159,8 @@ class HomeViewState extends State<HomeView>
                                               );
                                             }
                                             else {
-                                              if (_nombre == "ventas" &&
-                                                  _contr == "ventas") {
+                                              if (_nombre == "3" &&
+                                                  _contr == "3") {
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(

@@ -6,24 +6,24 @@ import './views/inventory/addInventory.dart';
 import './views/inventory/inventoryDetails.dart';
 import './views/production/addProduction.dart';
 import './views/production/productionDetails.dart';
-//import './views/homeView.dart';
-import './views/homeProduction.dart';
+import './views/homeView.dart';
+//import './views/homeProduction.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/' :
         return  MaterialPageRoute(
-          builder: (_)=> HomeProduction()
+          builder: (_)=> HomeView()
         );
       case '/addInventory' :
         return MaterialPageRoute(
           builder: (_)=> AddInventory()
         ) ;
-      case '/inventoryDetails' :
-        return MaterialPageRoute(
-            builder: (_)=> InventoryDetails()
-        ) ;
+      // case '/inventoryDetails' :
+      //   return MaterialPageRoute(
+      //       builder: (_)=> InventoryDetails()
+      //   ) ;
       case '/readInventory' :
         return MaterialPageRoute(
             builder: (_)=> ReadInventory()
@@ -32,10 +32,10 @@ class Router {
         return MaterialPageRoute(
             builder: (_)=> AddProduction()
         ) ;
-      case '/productionDetails' :
-        return MaterialPageRoute(
-            builder: (_)=> ProductionDetails()
-        ) ;
+      // case '/productionDetails' :
+      //   return MaterialPageRoute(
+      //       builder: (_)=> ProductionDetails()
+      //   ) ;
       case '/readProduction' :
         return MaterialPageRoute(
             builder: (_)=> ReadProduction()

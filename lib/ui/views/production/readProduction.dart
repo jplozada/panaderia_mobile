@@ -38,7 +38,7 @@ class _ReadProductionState extends State<ReadProduction> {
                 return ListView.builder(
                   itemCount: products.length,
                   itemBuilder: (buildContext, index) =>
-                      ProductionCard(productDetails: products[index]),
+                      ProductionCard(product: products[index]),
                 );
               } else {
                 return Center(child: Text('Cargando datos...'),);

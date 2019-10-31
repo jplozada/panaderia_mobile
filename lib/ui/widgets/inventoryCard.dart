@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:prueba1/core/models/inventoryModel.dart';
-import 'package:prueba1/ui/views/inventory/inventoryDetails.dart';
+import 'package:prueba1/ui/views/inventory/ModifyInventory.dart';
+import 'package:prueba1/core/viewmodels/CRUDModelInventory.dart';
+import 'package:provider/provider.dart';
 
 class InventoryCard extends StatelessWidget {
-  final Inventory productDetails;
+  final Inventory product;
 
-  InventoryCard({@required this.productDetails});
+  InventoryCard({@required this.product});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (_) => InventoryDetails(product: productDetails)));
-      },
-      child: Padding(
+    final productProvider = Provider.of<CRUDModelInventory>(context);
+
+    return Padding(
         padding: EdgeInsets.all(5),
         child: Card(
           elevation: 5,
@@ -34,13 +34,13 @@ class InventoryCard extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Expanded(
-                          flex: 2,
+                          flex: 4,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  productDetails.nombre,
+                                  product.nombre,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 18,
@@ -51,12 +51,13 @@ class InventoryCard extends StatelessWidget {
                           ),
                         ),
                         Expanded(
+                          flex: 1,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  productDetails.cantTotal,
+                                  product.cantTotal,
                                     style: TextStyle(
                                       fontSize: 16,),
                                 ),
@@ -65,12 +66,13 @@ class InventoryCard extends StatelessWidget {
                           ),
                         ),
                         Expanded(
+                          flex: 1,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  productDetails.cantSalida,
+                                  product.cantSalida,
                                     style: TextStyle(
                                       fontSize: 16,),
                                 ),
@@ -79,18 +81,40 @@ class InventoryCard extends StatelessWidget {
                           ),
                         ),
                         Expanded(
+                          flex: 1,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  productDetails.cantEntrada,
+                                  product.cantEntrada,
                                     style: TextStyle(
                                       fontSize: 16,),
                                 ),
                               ),
                             ],
                           ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: IconButton(
+                          iconSize: 35,
+                          icon: Icon(Icons.delete_forever),
+                          onPressed: () {
+                            productProvider.removeProduct(product.id);
+                            Navigator.pushNamed(context, '/');
+                          },
+                        ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: IconButton(
+                          iconSize: 35,
+                          icon: Icon(Icons.edit),
+                          onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (_)=> ModifyInventory(product: product,)));
+                            },
+                        ),
                         ),
                       ],
                     ),
@@ -100,7 +124,6 @@ class InventoryCard extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

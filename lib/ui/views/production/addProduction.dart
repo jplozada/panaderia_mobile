@@ -79,7 +79,7 @@ class _AddProductionState extends State<AddProduction> {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
                     await productProvider.addProduct(Production(trabajo: trabajo, cantidad: cantidad, fecha: fecha));
-                    Navigator.pushNamed(context, '/readProduction');
+                    Navigator.pushNamed(context, '/');
                   }
                 },
                 child: Text('add Product', style: TextStyle(color: Colors.white)),

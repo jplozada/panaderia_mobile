@@ -30,7 +30,9 @@ class _ModifyProductionState extends State<ModifyProduction> {
       appBar: AppBar(
         title: Text('Modificar registro'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Padding(
         padding: EdgeInsets.all(12),
         child: Form(
           key: _formKey,
@@ -40,11 +42,11 @@ class _ModifyProductionState extends State<ModifyProduction> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("Modificar Trabajo Realizado"),
-                  Text("Antiguo: ${widget.product.trabajo}", style: TextStyle(color: Colors.red),),
                 ],
               ),),
               SizedBox(height: 16,),
               TextFormField(
+                initialValue: widget.product.trabajo,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Trabajo Realizado',
@@ -63,11 +65,11 @@ class _ModifyProductionState extends State<ModifyProduction> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("Modificar Cantidad"),
-                  Text("Antiguo: ${widget.product.cantidad}", style: TextStyle(color: Colors.red),),
                 ],
               ),),
               SizedBox(height: 16,),
               TextFormField(
+                initialValue: widget.product.cantidad,
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -87,15 +89,15 @@ class _ModifyProductionState extends State<ModifyProduction> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("Modificar Fecha"),
-                  Text("Antiguo: ${widget.product.fecha}", style: TextStyle(color: Colors.red),),
                 ],
               ),),
               SizedBox(height: 16,),
               TextFormField(
+                initialValue: "${widget.product.fecha}",
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Fecha AA/MM/DD',
+                    hintText: 'Fecha Año/Mes/Dia',
                     fillColor: Colors.grey[300],
                     filled: true,
                   ),
@@ -113,7 +115,7 @@ class _ModifyProductionState extends State<ModifyProduction> {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
                     await productProvider.updateProduct(Production(trabajo: trabajo, cantidad: cantidad, fecha: fecha ),widget.product.id);
-                    Navigator.pushNamed(context, '/readProduction');
+                    Navigator.pushNamed(context, '/');
                   }
                 },
                 child: Text('Modificar registro', style: TextStyle(color: Colors.white)),
@@ -124,6 +126,7 @@ class _ModifyProductionState extends State<ModifyProduction> {
           ),
         ),
       ),
+      )
     );
   }
 }

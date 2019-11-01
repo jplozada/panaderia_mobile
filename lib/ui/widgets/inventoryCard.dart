@@ -57,7 +57,7 @@ class InventoryCard extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  product.cantTotal,
+                                  product.cantTotal.toString(),
                                     style: TextStyle(
                                       fontSize: 16,),
                                 ),
@@ -72,7 +72,7 @@ class InventoryCard extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  product.cantSalida,
+                                  product.cantSalida.toString(),
                                     style: TextStyle(
                                       fontSize: 16,),
                                 ),
@@ -87,7 +87,7 @@ class InventoryCard extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  product.cantEntrada,
+                                  product.cantEntrada.toString(),
                                     style: TextStyle(
                                       fontSize: 16,),
                                 ),
@@ -102,7 +102,7 @@ class InventoryCard extends StatelessWidget {
                           icon: Icon(Icons.delete_forever),
                           onPressed: () {
                             productProvider.removeProduct(product.id);
-                            Navigator.pushNamed(context, '/');
+                            Navigator.pushNamed(context, '/readInventory');
                           },
                         ),
                         ),

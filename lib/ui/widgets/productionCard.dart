@@ -86,7 +86,7 @@ class ProductionCard extends StatelessWidget {
                           icon: Icon(Icons.delete_forever),
                           onPressed: () {
                             productProvider.removeProduct(product.id);
-                            Navigator.pushNamed(context, '/');
+                            Navigator.pushNamed(context, '/readProduction');
                           },
                         ),
                         ),

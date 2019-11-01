@@ -67,7 +67,7 @@ class _ModifyInventoryState extends State<ModifyInventory> {
               ),),
               SizedBox(height: 16,),
               TextFormField(
-                  initialValue: widget.product.cantTotal,
+                  initialValue: widget.product.cantTotal.toString(),
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -91,7 +91,7 @@ class _ModifyInventoryState extends State<ModifyInventory> {
               ),),
               SizedBox(height: 16,),
               TextFormField(
-                  initialValue: widget.product.cantSalida,
+                  initialValue: widget.product.cantSalida.toString(),
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -115,7 +115,7 @@ class _ModifyInventoryState extends State<ModifyInventory> {
               ),),
               SizedBox(height: 16,),
               TextFormField(
-                  initialValue: widget.product.cantEntrada,
+                  initialValue: widget.product.cantEntrada.toString(),
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -135,8 +135,8 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                 onPressed: () async{
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    await productProvider.updateProduct(Inventory(nombre: nombre, cantTotal: cantTotal, cantSalida: cantSalida, cantEntrada: cantEntrada ),widget.product.id);
-                    Navigator.pushNamed(context, '/');
+                    await productProvider.updateProduct(Inventory(nombre: nombre, cantTotal: int.parse(cantTotal), cantSalida: int.parse(cantSalida), cantEntrada: int.parse(cantEntrada) ),widget.product.id);
+                    Navigator.pushNamed(context, '/readInventory');
                   }
                 },
                 child: Text('Modify Inventory', style: TextStyle(color: Colors.white)),

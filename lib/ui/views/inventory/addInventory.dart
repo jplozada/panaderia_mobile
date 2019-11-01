@@ -109,8 +109,8 @@ class _AddInventoryState extends State<AddInventory> {
                 onPressed: () async{
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    await productProvider.addProduct(Inventory(nombre: nombre, cantTotal: cantTotal, cantSalida: cantSalida, cantEntrada: cantEntrada));
-                    Navigator.pushNamed(context, '/');
+                    await productProvider.addProduct(Inventory(nombre: nombre, cantTotal: int.parse(cantTotal), cantSalida: int.parse(cantSalida), cantEntrada: int.parse(cantEntrada)));
+                    Navigator.pushNamed(context, '/readInventory');
                   }
                 },
                 child: Text('add Product', style: TextStyle(color: Colors.white)),

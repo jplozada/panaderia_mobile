@@ -2,9 +2,9 @@
 class Inventory {
   String id;
   String nombre;
-  String cantTotal;
-  String cantSalida;
-  String cantEntrada;
+  int cantTotal;
+  int cantSalida;
+  int cantEntrada;
 
   Inventory({this.id, this.nombre, this.cantTotal,this.cantSalida,this.cantEntrada});
 

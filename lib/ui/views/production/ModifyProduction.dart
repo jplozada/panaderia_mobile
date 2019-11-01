@@ -115,7 +115,7 @@ class _ModifyProductionState extends State<ModifyProduction> {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
                     await productProvider.updateProduct(Production(trabajo: trabajo, cantidad: cantidad, fecha: fecha ),widget.product.id);
-                    Navigator.pushNamed(context, '/');
+                    Navigator.pushNamed(context, '/readProduction');
                   }
                 },
                 child: Text('Modificar registro', style: TextStyle(color: Colors.white)),

@@ -1,33 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:prueba1/core/models/inventoryModel.dart';
+import 'package:prueba1/core/models/salesModel.dart';
 import 'package:provider/provider.dart';
-import '../../../core/viewmodels/CRUDModelInventory.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import '../../../core/viewmodels/CRUDModelSales.dart';
 
-class AddInventory extends StatefulWidget {
+class AddSales extends StatefulWidget {
   @override
-  _AddInventoryState createState() => _AddInventoryState();
+  _AddSalesState createState() => _AddSalesState();
 }
 
-class _AddInventoryState extends State<AddInventory> {
+class _AddSalesState extends State<AddSales> {
   final _formKey = GlobalKey<FormState>();
-  String _counter,_value = "Presione el boton para escanear";
-  Future _incrementCounter() async{
-    _counter= await FlutterBarcodeScanner.scanBarcode("#004297", "Cancel", true, ScanMode.DEFAULT);
-    setState(() {
-      _value=_counter;
-      nombre = _value;
-    });
-  }
 
-  String nombre ;
-  String cantTotal ;
-  String cantSalida ;
-  String cantEntrada ;
+  String fechaVenta ;
+  String prodVenta ;
+  String cantRecibida ;
+  String cantVendida ;
 
   @override
   Widget build(BuildContext context) {
-    var productProvider = Provider.of<CRUDModelInventory>(context) ;
+    DateTime selectedDate = DateTime.now();
+    var productProvider = Provider.of<CRUDModelSales>(context) ;
     return Scaffold(
       appBar: AppBar(
         title: Text('Añadir registro'),
@@ -38,79 +30,77 @@ class _AddInventoryState extends State<AddInventory> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 3,
-                      child: Text(_value),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: RaisedButton(
-                      onPressed: _incrementCounter,
-                      child: Text("Leer QR", style: TextStyle(color: Colors.white),),
-                      color: Colors.blue,
-                      ),
-                    ),
-                  ],
+              SizedBox(height: 16,),
+              TextFormField(
+                initialValue: "${selectedDate.year}-${selectedDate.month}-${selectedDate.day}",
+                keyboardType: TextInputType.numberWithOptions(),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Fecha de venta',
+                  fillColor: Colors.grey[300],
+                  filled: true,
                 ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Introduzca la fecha de venta';
+                  }
+                },
+                  onSaved: (value) => fechaVenta = value
+              ),
+              SizedBox(height: 16,),
+              TextFormField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Producto en venta',
+                  fillColor: Colors.grey[300],
+                  filled: true,
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Introduzca el producto en venta';
+                  }
+                },
+                  onSaved: (value) => prodVenta = value
               ),
               SizedBox(height: 16,),
               TextFormField(
                 keyboardType: TextInputType.numberWithOptions(),
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Cantidad total',
+                  hintText: 'Cantidad Recibida',
                   fillColor: Colors.grey[300],
                   filled: true,
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Introduzca la cantidad total';
+                    return 'Introduzca la cantidad recibida';
                   }
                 },
-                  onSaved: (value) => cantTotal = value
+                  onSaved: (value) => cantRecibida = value
               ),
               SizedBox(height: 16,),
               TextFormField(
                 keyboardType: TextInputType.numberWithOptions(),
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Cantidad Salida',
+                  hintText: 'Cantidad Vendida',
                   fillColor: Colors.grey[300],
                   filled: true,
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Introduzca la cantidad de salida';
+                    return 'Introduzca la cantidad de vendida';
                   }
                 },
-                  onSaved: (value) => cantSalida = value
-              ),
-              SizedBox(height: 16,),
-              TextFormField(
-                keyboardType: TextInputType.numberWithOptions(),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Cantidad Entrada',
-                  fillColor: Colors.grey[300],
-                  filled: true,
-                ),
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Introduzca la cantidad de entrada';
-                  }
-                },
-                  onSaved: (value) => cantEntrada = value
+                  onSaved: (value) => cantVendida = value
               ),
               RaisedButton(
                 splashColor: Colors.red,
                 onPressed: () async{
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    await productProvider.addProduct(Inventory(nombre: nombre, cantTotal: int.parse(cantTotal), cantSalida: int.parse(cantSalida), cantEntrada: int.parse(cantEntrada)));
-                    Navigator.pushNamed(context, '/readInventory');
+                    await productProvider.addProduct(Sales(fechaVenta: fechaVenta, prodVenta: prodVenta, cantRecibida: int.parse(cantRecibida), cantVendida: int.parse(cantVendida)));
+                    Navigator.pushNamed(context, '/readSales');
                   }
                 },
                 child: Text('Añadir registro', style: TextStyle(color: Colors.white)),

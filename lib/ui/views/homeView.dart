@@ -3,9 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:prueba1/ui/views/HomeProduction.dart';
-import 'package:prueba1/ui/views/homeVentas.dart';
+import 'package:prueba1/ui/views/homeGerente.dart';
 import 'package:prueba1/ui/views/inventory/readInventory.dart';
 import 'package:prueba1/ui/views/production/readProduction.dart';
+import 'package:prueba1/ui/views/sales/readSales.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -322,11 +323,6 @@ class LogInScreenState extends State<LogInScreen>
                                             //fit: BoxFit.scaleDown,
                                           )),
                                     ),
-//                                      onChanged: (text) {
-//                                        _nombre2 = widget._nombre;
-//                                        print(_nombre2);
-//                                      },
-                                    //keyboardType: TextInputType.emailAddress,
                                   ),
                                 ),
                                 new Padding(
@@ -374,26 +370,6 @@ class LogInScreenState extends State<LogInScreen>
                                             gravity: ToastGravity.CENTER,
                                             timeInSecForIos: 1);
                                       } else {
-
-
-                                        /* Fluttertoast.showToast(
-                                              msg:
-                                              "You have successfull logedin to " +
-                                                  email_controller.value.text
-                                                      .toString(),
-                                              toastLength: Toast.LENGTH_SHORT,
-                                              gravity: ToastGravity.CENTER,
-                                              timeInSecForIos: 1);
-*/
-                                        // email_controller.clear();
-                                        //password_controller.clear();
-                                        //Navigator.of(context).pop(LOGIN_SCREEN);
-
-//                                          var root=MaterialPageRoute(builder: (context)=>
-//                                          new HomeScreen(email_controller.value.text.toString()));
-//                                        //  Navigator.of(context).pop(LOGIN_SCREEN);
-//                                          Navigator.pushReplacement(context, root);
-
                                         if (widget._nombre == "INVENTARIO" &&
                                             _contr == "inventario") {
                                           Navigator.push(
@@ -404,18 +380,6 @@ class LogInScreenState extends State<LogInScreen>
                                             ),
                                           );
                                         }
-//                                          else {
-//                                            if (_nombre != "cristian") {
-//                                              setState(() {
-//                                                _mensaje = "nombre incorrecto";
-//                                              });
-//                                            }
-//                                            if (_contr != "123456") {
-//                                              setState(() {
-//                                                _mensaje = "password incorrecto";
-//                                              });
-//                                            }
-//                                          }
                                         else {
                                           if (widget._nombre == "PRODUCCION" &&
                                               _contr == "produccion") {
@@ -434,7 +398,7 @@ class LogInScreenState extends State<LogInScreen>
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        HomeVentas()
+                                                      ReadSales()
                                                 ),
                                               );
                                             }
@@ -445,7 +409,7 @@ class LogInScreenState extends State<LogInScreen>
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          ReadProduction()
+                                                          HomeGerente()
                                                   ),
                                                 );
                                               }

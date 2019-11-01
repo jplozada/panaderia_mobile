@@ -39,7 +39,7 @@ class _ModifyInventoryState extends State<ModifyInventory> {
               Container(child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("Modificar Trabajo Realizado"),
+                  Text("Nombre del producto"),
                 ],
               ),),
               SizedBox(height: 16,),
@@ -47,13 +47,13 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                   initialValue: widget.product.nombre,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Inventory Title',
+                    hintText: 'Producto',
                     fillColor: Colors.grey[300],
                     filled: true,
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter Inventory Title';
+                      return 'Ingrese el nombre del producto';
                     }
                   },
                   onSaved: (value) => nombre = value
@@ -62,7 +62,7 @@ class _ModifyInventoryState extends State<ModifyInventory> {
               Container(child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("Modificar Trabajo Realizado"),
+                  Text("Precio"),
                 ],
               ),),
               SizedBox(height: 16,),
@@ -71,13 +71,13 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Price',
+                    hintText: 'Precio',
                     fillColor: Colors.grey[300],
                     filled: true,
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter The price';
+                      return 'Introduzca el precio';
                     }
                   },
                   onSaved: (value) => cantTotal = value
@@ -86,7 +86,7 @@ class _ModifyInventoryState extends State<ModifyInventory> {
               Container(child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("Modificar Trabajo Realizado"),
+                  Text("Cantida de salida"),
                 ],
               ),),
               SizedBox(height: 16,),
@@ -95,13 +95,13 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Price',
+                    hintText: 'Cantidad de Salida',
                     fillColor: Colors.grey[300],
                     filled: true,
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter The price';
+                      return 'Ingrese la cantidad de salida';
                     }
                   },
                   onSaved: (value) => cantSalida = value
@@ -110,7 +110,7 @@ class _ModifyInventoryState extends State<ModifyInventory> {
               Container(child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("Modificar Trabajo Realizado"),
+                  Text("Cantidad de entrada"),
                 ],
               ),),
               SizedBox(height: 16,),
@@ -119,13 +119,13 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                   keyboardType: TextInputType.numberWithOptions(),
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Price',
+                    hintText: 'Cantidad de entrada',
                     fillColor: Colors.grey[300],
                     filled: true,
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter The price';
+                      return 'Ingrese la cantidad de entrada';
                     }
                   },
                   onSaved: (value) => cantEntrada = value
@@ -139,7 +139,7 @@ class _ModifyInventoryState extends State<ModifyInventory> {
                     Navigator.pushNamed(context, '/readInventory');
                   }
                 },
-                child: Text('Modify Inventory', style: TextStyle(color: Colors.white)),
+                child: Text('Modificar registro', style: TextStyle(color: Colors.white)),
                 color: Colors.blue,
               )
 

@@ -4,6 +4,7 @@ import './ui/router.dart';
 import './locator.dart';
 import './core/viewmodels/CRUDModelInventory.dart';
 import './core/viewmodels/CRUDModelProduction.dart';
+import './core/viewmodels/CRUDModelSales.dart';
 
 void main() {
   setupLocator();
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(builder: (_) => locator<CRUDModelInventory>()),
         ChangeNotifierProvider(builder: (_) => locator<CRUDModelProduction>()),
+        ChangeNotifierProvider(builder: (_) => locator<CRUDModelSales>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

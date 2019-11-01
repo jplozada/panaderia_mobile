@@ -82,7 +82,7 @@ class _AddProductionState extends State<AddProduction> {
                     Navigator.pushNamed(context, '/readProduction');
                   }
                 },
-                child: Text('add Product', style: TextStyle(color: Colors.white)),
+                child: Text('Añadir registro', style: TextStyle(color: Colors.white)),
                 color: Colors.blue,
               )
 
